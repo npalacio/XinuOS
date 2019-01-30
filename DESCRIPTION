@@ -1,0 +1,32 @@
+This directory holds Xinu sources for the Galileo. This version is specifically
+for students in CSCI 8530 at the University of Nebraska at Omaha. It is the
+initial version for the Fall 2017 semester.
+
+It is a modification of the Purdue Xinu distribution for the Galileo.
+Specifically, it deals with the possibility that (a) there is no Ethernet link,
+or (b) there is Ethernet but no DHCP server, or (c) the user uses the
+netstatus command to shut down the networking.
+
+It also has vacuous versions of the swait and ssignal system functions (in the
+expected files), and an implemention of a solution to the Dining Philosopers 
+problem using swait and ssignal. Of course it won't work correctly until those
+system calls are written. Implementation of those system calls may, or may not,
+be assigned during the Fall 2017 semester.
+
+The mklfs command is provided to build a local filesystem on the RAM disk.
+A few additional commands are provided to manipulate files, along with a
+few extensions to the LFS devices.
+
+Multiple timeserver IP addresses are defined in net/dhcp.c. These are used in
+getutime, in the order given, as needed in case of timeouts. The IP addresses
+can obviously be changed as desired.
+
+This version has the UECHO device (which should eventually be renamed).
+
+A simple BASIC interpreter "basic" is provided.
+
+A simple line-oriented text editor calle "e0" is provided.
+
+A TFTP ("Trivial File Transfer Protocol") client "tftp" is provided.
+
+The "reboot" command is provided, and works with Galileo Gen 1 and Gen 2.
