@@ -1,0 +1,12 @@
+*.gz
+*.elf
+*.map
+**/bin
+**/binaries
+*.gz
+*.elf
+*.map
+**/bin
+**/binaries
+*.o
+**/xinu
