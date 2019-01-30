@@ -1,0 +1,55 @@
+/* uechoinit.c - uechoinit, ueproc */
+
+#include <xinu.h>
+
+/*------------------------------------------------------------------------
+ *  uechoinit  -  Initialize uecho device
+ *------------------------------------------------------------------------
+ */
+struct uedevice uedev;
+
+devcall	uechoinit(
+	  struct dentry	*devptr		/* Entry in device switch table	*/
+	)
+{
+	int32 retval;
+
+	uedev.ueisopen = 0;		/* device is not open yet */
+	uedev.reg = 0;			/* port is not yet registered */
+	uedev.osem = semcreate(1);	/* output buffer semaphore */
+	uedev.obx = 0;			/* output buffer pointer */
+
+	return (devcall)OK;
+}
+
+/*------------------------------------------------------------------------
+ * ueproc  -  Send UE0 output buffer, as appropriate
+ *------------------------------------------------------------------------
+ */
+
+process	ueproc ()
+{
+	/*----------------------------------------------*/
+	/* Do forever					*/
+	/*	sleep however long is reasonable	*/
+	/*	down uesema				*/
+	/*	if ue0 output buffer is not empty	*/
+	/*		send it				*/
+	/*		empty the buffer		*/
+	/*	up uesema				*/
+	/*----------------------------------------------*/
+
+	while(1) {
+		sleepms(UEOWAIT);		/* wait a while... */
+		wait(uedev.osem);
+		if (uedev.obx > 0) {		/* output buffer not empty? */
+		    udp_sendto(uedev.slot,	/* send the data */
+			uedev.remip,
+			uedev.remport,
+			uedev.obuff,
+			uedev.obx);
+		    uedev.obx = 0;		/* reset the output index */
+		}
+		signal(uedev.osem);
+	}
+}
