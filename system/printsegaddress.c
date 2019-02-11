@@ -1,4 +1,7 @@
 /* printsegaddress.c - printsegaddress */
+
+/* Group Members: Seth Redwine, Nick Palacio, Jeffrey Allen */
+
 #include <xinu.h>
 #include <stdio.h>
 #include <string.h>
