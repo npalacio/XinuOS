@@ -17,7 +17,7 @@ process	main(void)
 
 	recvclr();
 
-    	printsegaddress();
+    printsegaddress();
 
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
 
