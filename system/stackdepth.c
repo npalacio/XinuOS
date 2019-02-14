@@ -1,4 +1,14 @@
+/* stackdepth.c - stackdepth */
+
+/* Group Members: Seth Redwine, Nick Palacio, Jeffrey Allen */
+
 #include <xinu.h>
+
+/*------------------------------------------------------------------------
+ * stackdepth - determines how many nested function calls have been made
+ * by the current process
+ *------------------------------------------------------------------------
+ */
 
 int stackdepth() {
 
