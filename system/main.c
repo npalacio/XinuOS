@@ -15,9 +15,12 @@ process	main(void)
 
 	nsaddr = 0x800a0c10;
 
+    printsegaddress();
+    func1();
+
 	recvclr();
 
-    printsegaddress();
+    //printsegaddress();
 
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
 
