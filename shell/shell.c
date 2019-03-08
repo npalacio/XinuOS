@@ -166,6 +166,9 @@ process	shell (
 		/* line, ignore it and go get the next input line.    */
 		/*----------------------------------------------------*/
 		while (ilen > 0) {
+            if (*iptr == 0x01) {
+                kprintf("Inside Nicks code block!!!");
+            }
 		    if (*iptr != ' ' && *iptr != '\t' && *iptr != '\n' &&
 			    *iptr != '\r') {
 			break;		/* found something to do */
