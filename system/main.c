@@ -22,7 +22,15 @@ process	main(void)
 
     //printsegaddress();
 
-	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
+    kprintf("Ready to read character...");
+    char character[1];
+    while (TRUE) {
+        read(CONSOLE, character, sizeof(character));
+        if (*character == 0x01) {
+            kprintf("Control-A character read successfully!");
+        }
+    }
+	//resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
 
 	/* Wait for shell to exit and recreate it */
 
