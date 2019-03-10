@@ -72,6 +72,7 @@ extern	struct	ttycblk	ttytab[];
 #define	TY_KILLCH	'\025'		/* Control-U is line kill	*/
 #define	TY_UPARROW	'^'		/* Used for control chars (^X)	*/
 #define	TY_FULLCH	TY_BELL		/* Char to echo when buffer full*/
+#define TY_PY           '\005'          /* Control-A code to output ps  */
 
 /* Tty control function codes */
 
