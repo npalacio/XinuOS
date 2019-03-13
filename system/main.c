@@ -15,23 +15,14 @@ process	main(void)
 
 	nsaddr = 0x800a0c10;
 
-    printsegaddress();
-    func1();
+//    printsegaddress();
+//    func1();
 
 	recvclr();
 
-    //printsegaddress();
+    kprintf("Press Control-A to view debug information...");
 
-    kprintf("Ready to read character...");
-    char character[1];
-    while (TRUE) {
-        read(CONSOLE, character, sizeof(character));
-        if (*character == 0x01) {
-            kprintf("Control-A character read successfully!");
-        }
-    }
-	//resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
-
+    resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
 	/* Wait for shell to exit and recreate it */
 
 	while (TRUE) {
