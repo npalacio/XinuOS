@@ -163,16 +163,14 @@ void	ttyhandle_in (
 		/* Echo the character */
 
 		if (typtr->tyiecho) {
-            if(ch == 0x01) {
+            if(ch == TY_PY) {
                 struct  procent *prptr;     /* pointer to process       */
                 int32   i;          /* index into proctabl      */
                 char *pstate[]  = {     /* names for process states */
                     "free ", "curr ", "ready", "recv ", "sleep", "susp ", "wait ", "rtime"
                 };
 
-                kprintf("");
-                kprintf("Hit nicks code block, will not echo control-A");
-                kprintf("%3s %-16s %5s %4s %4s %10s %-10s %10s\n",
+                kprintf("\n%3s %-16s %5s %4s %4s %10s %-10s %10s\n",
                                    "Pid", "Name", "State", "Prio", "Ppid", "Stack Base",
                                            "Stack Ptr", "Stack Size");
                 for (i = 0; i < NPROC; i++) {
