@@ -163,7 +163,27 @@ void	ttyhandle_in (
 		/* Echo the character */
 
 		if (typtr->tyiecho) {
-			echoch(ch, typtr, csrptr);
+            if(ch == TY_PY) {
+                struct  procent *prptr;     /* pointer to process       */
+                int32   i;          /* index into proctabl      */
+                char *pstate[]  = {     /* names for process states */
+                    "free ", "curr ", "ready", "recv ", "sleep", "susp ", "wait ", "rtime"
+                };
+
+                kprintf("\n%3s %-16s %5s %4s %4s %10s %-10s %10s\n",
+                                   "Pid", "Name", "State", "Prio", "Ppid", "Stack Base",
+                                           "Stack Ptr", "Stack Size");
+                for (i = 0; i < NPROC; i++) {
+                    prptr = &proctab[i];
+                    if (prptr->prstate == PR_FREE) {  /* skip unused slots  */
+                        continue;
+                    }
+                    kprintf("%3d %-16s %s %4d %4d 0x%08X 0x%08X %8d\n", i, prptr->prname, pstate[(int)prptr->prstate],
+                        prptr->prprio, prptr->prparent, prptr->prstkbase, prptr->prstkptr, prptr->prstklen);
+                }
+            } else {
+			    echoch(ch, typtr, csrptr);
+            }
 		}
 
 		/* Insert in the input buffer */
