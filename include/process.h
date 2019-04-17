@@ -39,6 +39,9 @@
 #define NDESC		6	/* must be odd to make procent 4N bytes	*/
 
 /* Definition of the process table (multiple of 32 bits) */
+/* XXX While it is desirable to have the process table occupy an integral */
+/* XXX number of 32 bit words, it is not "terminal" if that condition is  */
+/* XXX not met. --SAW                                                     */
 
 struct procent {		/* Entry in the process table		*/
 	uint16	prstate;	/* Process state: PR_CURR, etc.		*/

@@ -697,8 +697,8 @@ extern	void	xdone(void);
 extern	syscall	yield(void);
 
 /* For grading prog3 */
-extern syscall swait(sid32, sid32);
-extern syscall ssignal(sid32, sid32);
+extern syscall regevent(void *, uint32);
+extern syscall sendevent(pid32, uint32);
 
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)   ( ( 0xff & ((x)>>8) ) | ( (0xff & (x)) << 8 ) )

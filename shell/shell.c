@@ -128,6 +128,8 @@ process	shell (
 
 	fprintf(dev, "%s\n\n", SHELL_STRTMSG);
 
+	fprintf(dev, "CSCI8530-173-3\n");
+
 	/*---------------------------------------------------------------*/
 	/* Continually prompt the user, read input, and execute command. */
 	/*---------------------------------------------------------------*/

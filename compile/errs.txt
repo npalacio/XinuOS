@@ -1,5 +1,0 @@
-../system/printsegaddress.c: In function ‘printsegaddress’:
-../system/printsegaddress.c:24:205: warning: value computed is not used [-Wunused-value]
-../system/printsegaddress.c:24:205: warning: value computed is not used [-Wunused-value]
-../system/printsegaddress.c:24:205: warning: value computed is not used [-Wunused-value]
-../system/printsegaddress.c:24:205: warning: value computed is not used [-Wunused-value]

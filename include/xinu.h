@@ -43,3 +43,6 @@
 #include <setjmp.h>
 #include <uecho.h>
 #include <errors.h>
+
+/* For grading program 3 */
+#include <event.h>
