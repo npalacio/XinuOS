@@ -1,7 +1,9 @@
+// Group Members: Nicholas Palacio, Seth Redwine, Jeffrey Allen
+
 #include <xinu.h>
 
 /*---------------------------------------------------------*/
-/* This is an empty shell for a system call named ssignal. */
+/* swait - Simultaneous wait for two semaphores.           */
 /*---------------------------------------------------------*/
 
 syscall swait(
@@ -9,10 +11,10 @@ syscall swait(
         sid32 semB
         )
 {
-    intmask mask;           /* Saved interrupt mask     */
-    struct  procent *prptr;     /* Ptr to process' table entry  */
-    struct  sentry *semptrA;     /* Ptr to sempahore table entry */
-    struct  sentry *semptrB;     /* Ptr to sempahore table entry */
+    intmask mask;            /* Saved interrupt mask         */
+    struct  procent *prptr;  /* Ptr to process' table entry  */
+    struct  sentry *semptrA; /* Ptr to sempahore table entry */
+    struct  sentry *semptrB; /* Ptr to sempahore table entry */
 
     // Disable interrupts
     mask = disable();
@@ -25,10 +27,12 @@ syscall swait(
         restore(mask);
         return SYSERR;
     }
+    
     if(isbadsem(semA) || isbadsem(semB)) {
         restore(mask);
         return SYSERR;
     }
+    
     if(semptrA->sstate == S_FREE || semptrB->sstate == S_FREE) {
         restore(mask);
         return SYSERR;
