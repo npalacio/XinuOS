@@ -1,7 +1,9 @@
+// Group Members: Nicholas Palacio, Seth Redwine, Jeffrey Allen
+
 #include <xinu.h>
 
 /*---------------------------------------------------------*/
-/* This is an empty shell for a system call named ssignal. */
+/* ssignal - Simultaneous signal of two semaphores.        */
 /*---------------------------------------------------------*/
 
 syscall ssignal(
