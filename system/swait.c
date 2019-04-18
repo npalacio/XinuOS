@@ -53,6 +53,7 @@ syscall swait(
 
             // When we get back lets run through everything again
                 // We shouldn't hit this block twice in a row since resched will only return when our process has been run again after the semA became 'good to go'
+            semptrA->scount++;
             return swait(semA, semB);
         }
         if(semptrB->scount <= 0) {
@@ -66,6 +67,7 @@ syscall swait(
 
             // When we get back lets run through everything again
                 // We shouldn't hit this block twice in a row since resched will only return when our process has been run again after the semA became 'good to go'
+            semptrB->scount++;
             return swait(semA, semB);
         }
     }
