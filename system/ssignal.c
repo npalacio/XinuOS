@@ -38,17 +38,22 @@ syscall ssignal(
         return SYSERR;
     }
 
-    // Increment the counts of each semaphore
-    semptrA->scount++;
-    semptrB->scount++;
+    // Start resched_cntl
+    resched_cntl(DEFER_START);
 
+    // Increment the counts of each semaphore and
+    // move longest waiting process to ready state
+    if ((semptrA->scount++) < 0) {
+        ready(dequeue(semptrA->squeue));
+    }
 
+    if ((semptrB->scount++) < 0) {
+        ready(dequeue(semptrB->squeue));
+    }
 
-
-
-
-
-
-
+    // End resched_cntl
+    resched_cntl(DEFER_STOP);
+    
+    restore(mask);
     return OK;
 }
